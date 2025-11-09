@@ -9,9 +9,9 @@ Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 Directions:
 
-make
-make clean
-make program
+make <br />
+make clean <br />
+make program <br />
 
 All work from parent project folder. Debugging is clunky and bugging through make, but works perfectly with VsCode Cortex M debug Addon by marus25. For now, I guess gdb scripts are out of the question.
 
