@@ -16,7 +16,6 @@ x64/
 *.prefs
 __MACOSX/
 _MACOSX/
-.build/
 .metadata/
 .build_Debug/
 *.d
@@ -118,7 +117,7 @@ LLVM/
 transcode report.txt
 /examples/*/build
 /example_projects/*/build
-/build*
+/build/*
 /doc/*.md
 /core/build
 /doc/html
