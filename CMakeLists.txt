@@ -87,7 +87,7 @@ add_custom_command(
   COMMAND arm-none-eabi-objcopy -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
   COMMAND arm-none-eabi-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin)
 
-add_custom_target(flash
+add_custom_target(program
   COMMAND openocd -f interface/stlink.cfg -f target/stm32h7x.cfg
           -c "program ${PROJECT_NAME}.elf verify reset exit"
   DEPENDS ${EXECUTABLE}

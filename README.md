@@ -1,17 +1,23 @@
 # BasicDaisy
 A basic project setup based on the daisy seed board by Electrosmith, to be used as an STM dev board.
 
-The motivation for this setup is the fact that I wanted a cheap STM dev board with external RAM. After some research I went with Daisy Seed board. Obviously the Electrosmith daisy codebase is intented to support their whole line of products which was not my use case. Also their whole setup is C++17 and I wanted to have something working with C++23 to have an opportunity to learn the newer features.
+The motivation for this setup is the fact that I wanted a cheap STM dev board with external RAM. After some research I went with Daisy Seed board. Obviously the Electrosmith daisy codebase is intended to support their whole line of products which was not my use case. Also their whole setup is C++17 and I wanted to have something working with C++23 to have an opportunity to learn the newer features.
 
 The project contains the basic stuff (maybe a few more) from original Daisy codebase that are required to blink the onboard led. 
 Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 
 Directions:
-
-make <br />
+Using cmake from build directory:
+cmake .. -DCMAKE_BUILD_TYPE=Debug
 make clean <br />
-make program <br />
+make <br />
+To flash: make program <br />
+
+Using makefile from project directory:
+make clean <br />
+make <br />
+To flash: make program <br />
 
 All work from parent project folder. Debugging is clunky and bugging through make, but works perfectly with VsCode Cortex M debug Addon by marus25. For now, I guess gdb scripts are out of the question.
 
