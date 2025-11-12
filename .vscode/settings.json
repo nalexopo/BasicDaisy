@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "main.h": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "stm32h7xx_hal.h": "c"
     }
 }
