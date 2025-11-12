@@ -7,14 +7,14 @@ The project contains the basic stuff (maybe a few more) from original Daisy code
 Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 
-Directions:
-Using cmake from build directory:
-cmake .. -DCMAKE_BUILD_TYPE=Debug
+Directions:<br />
+Using cmake from build directory: <br />
+cmake .. -DCMAKE_BUILD_TYPE=Debug <br />
 make clean <br />
 make <br />
 To flash: make program <br />
 
-Using makefile from project directory:
+Using makefile from project directory:<br />
 make clean <br />
 make <br />
 To flash: make program <br />
