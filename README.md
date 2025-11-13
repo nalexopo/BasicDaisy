@@ -28,4 +28,4 @@ cd build && ctest<br />
 
 All work from parent project folder. Debugging is clunky and bugging through make, but works perfectly with VsCode Cortex M debug Addon by marus25. For now, I guess gdb scripts are out of the question.
 
-Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies I will try to keep main branch in a basic project form and do my own dev on branches. 
+Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies. I will try to keep main branch in a basic project form and do my own dev on branches. 
