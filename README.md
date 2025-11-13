@@ -7,18 +7,25 @@ The project contains the basic stuff (maybe a few more) from original Daisy code
 Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 
-Directions:
-Using cmake from build directory:
+### Directions:
+
+#### Using cmake from build directory:
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 make clean <br />
 make <br />
 To flash: make program <br />
 
-Using makefile from project directory:
+#### Using makefile from project directory:
 make clean <br />
 make <br />
 To flash: make program <br />
 
+#### Testing with google test (only hello world for now)
+cd test <br />
+cmake -S . -B build <br />
+cmake --build build <br />
+cd build && ctest<br />
+
 All work from parent project folder. Debugging is clunky and bugging through make, but works perfectly with VsCode Cortex M debug Addon by marus25. For now, I guess gdb scripts are out of the question.
 
-I am planning to add google test support. Maybe I will do a non-HAL version. I will try to keep main branch in a basic project form and do my own dev on branches. 
+Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies I will try to keep main branch in a basic project form and do my own dev on branches. 
