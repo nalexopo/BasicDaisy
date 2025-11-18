@@ -5,8 +5,7 @@
 
 #ifdef __cplusplus
 
-namespace daisy
-{
+
 /** @brief General Purpose I/O control 
  *  @details peripheral control over a single GPIO
  *  @ingroup peripheral
@@ -138,7 +137,7 @@ class GPIO
     uint32_t *port_base_addr_;
 };
 
-} // namespace daisy
+
 
 #endif
 #endif

@@ -5,8 +5,6 @@
 #include <cstdint>
 #include "stm32h7xx_hal.h"
 
-namespace daisy
-{
 /** @brief Hardare timer peripheral support.
  ** 
  ** Supports general-function TIM peripherals:
@@ -181,6 +179,5 @@ class TimerHandle
     Impl* pimpl_;
 };
 
-} // namespace daisy
 
 #endif

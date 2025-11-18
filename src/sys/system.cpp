@@ -16,8 +16,8 @@ extern "C"
 }
 
 // boot info struct declared in persistent backup SRAM
-volatile daisy::System::BootInfo __attribute__((section(".backup_sram")))
-daisy::boot_info;
+volatile System::BootInfo __attribute__((section(".backup_sram")))
+boot_info;
 
 // Jump related stuff
 #define u32 uint32_t
@@ -200,8 +200,7 @@ extern "C"
     }
 }
 
-namespace daisy
-{
+
 // Define static tim_
 TimerHandle System::tim_;
 
@@ -610,8 +609,6 @@ System::MemoryRegion System::GetMemoryRegion(uint32_t addr)
     return MemoryRegion::INVALID_ADDRESS;
 }
 
-
-} // namespace daisy
 
 static void Error_Handler()
 {

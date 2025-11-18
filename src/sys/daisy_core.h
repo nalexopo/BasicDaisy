@@ -169,8 +169,7 @@ FORCE_INLINE int32_t f2s32(float x)
 
 #ifdef __cplusplus
 
-namespace daisy
-{
+
 /** @brief GPIO Port names */
 enum GPIOPort
 {
@@ -263,8 +262,6 @@ typedef enum
     }
 
 } dsy_gpio_pin;
-
-} // namespace daisy
 
 #endif // __cplusplus
 

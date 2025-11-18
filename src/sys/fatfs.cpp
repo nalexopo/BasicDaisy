@@ -4,7 +4,6 @@
 #include "util/usbh_diskio.h"
 
 
-using namespace daisy;
 
 FatFSInterface::Result FatFSInterface::Init(const FatFSInterface::Config& cfg)
 {

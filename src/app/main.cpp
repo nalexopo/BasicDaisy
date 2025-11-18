@@ -2,16 +2,13 @@
 #include "system.h"
 #include "gpio.h"
 
-
-
-
 int main(void)
 {
 
-    daisy::GPIO led;
-    daisy::Pin ledpin(daisy::PORTC,7);
-    led.Init(ledpin, daisy::GPIO::Mode::OUTPUT, daisy::GPIO::Pull::NOPULL, daisy::GPIO::Speed::MEDIUM);
-    daisy::System MySystem;
+    GPIO led;
+    Pin ledpin(PORTC,7);
+    led.Init(ledpin, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL, GPIO::Speed::MEDIUM);
+    System MySystem;
     MySystem.Init();
     while(1)
     {

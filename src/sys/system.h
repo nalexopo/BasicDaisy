@@ -6,8 +6,6 @@
 #include <cstdint>
 #include "tim.h"
 
-namespace daisy
-{
 /** A handle for interacting with the Core System.
  ** This includes the Clock tree, MPU, global DMA initialization,
  ** cache handling, and any other necessary global initiailzation
@@ -236,16 +234,15 @@ class System
     static TimerHandle tim_;
 };
 
-extern volatile daisy::System::BootInfo boot_info;
+extern volatile System::BootInfo boot_info;
 
-} // namespace daisy
+
 
 #else // ifndef UNIT_TEST
 
 #include <cstdint>
 #include "../tests/TestIsolator.h"
-namespace daisy
-{
+
 /** This is a dummy implementation for use in unit tests.
  *  In your test, you can set the current system time to
  *  control the "flow of time" :-)
@@ -302,7 +299,6 @@ class System
     static TestIsolator<SystemState> testIsolator_;
 };
 
-} // namespace daisy
 
 #endif // ifndef UNIT_TEST
 #endif

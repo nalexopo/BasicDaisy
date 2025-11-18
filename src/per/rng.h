@@ -1,8 +1,7 @@
 #pragma once
 #include "daisy_core.h"
 
-namespace daisy
-{
+
 /** @brief True Random Number Generator access
  *  @author shensley
  *  @ingroup utility
@@ -56,4 +55,3 @@ class Random
     static bool IsReady();
 };
 
-} // namespace daisy

@@ -4,8 +4,7 @@
 
 #define RNG_TIMEOUT 100
 
-namespace daisy
-{
+
 void Random::Init()
 {
     /** NON-HAL except defines/macros */
@@ -49,4 +48,3 @@ bool Random::IsReady()
     return ((RNG->SR & RNG_FLAG_DRDY) == RNG_FLAG_DRDY) == SET;
 }
 
-} // namespace daisy

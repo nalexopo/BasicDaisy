@@ -13,8 +13,6 @@
 // - HRTIM
 //
 
-namespace daisy
-{
 /** Private Implementation for TimerHandle */
 class TimerHandle::Impl
 {
@@ -446,7 +444,6 @@ void TimerHandle::SetCallback(PeriodElapsedCallback cb, void* data)
 }
 
 
-} // namespace daisy
 
 
 //////////////////////////////////////////////////////////////////

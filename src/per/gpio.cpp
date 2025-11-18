@@ -1,7 +1,7 @@
 #include "gpio.h"
 #include "stm32h7xx_hal.h"
 
-using namespace daisy;
+
 
 void GPIO::Init(const Config &cfg)
 {

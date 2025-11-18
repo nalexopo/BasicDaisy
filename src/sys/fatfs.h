@@ -3,8 +3,6 @@
 
 #include "ff.h"
 
-namespace daisy
-{
 /** @brief Daisy FatFS Driver Interface
  *  @details Specifies the desired media (SD Card, USB, etc.) to be mountable with FatFS
  *           within a given application. Once initialization is called, the standard
@@ -101,8 +99,6 @@ class FatFSInterface
     char   path_[_VOLUMES][4];
     bool   initialized_;
 };
-
-} // namespace daisy
 
 /** Implementation of FatFS time method 
  *  @return 0
