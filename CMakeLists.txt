@@ -46,6 +46,7 @@ add_executable(
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c
 	src/sys/dma.c
 	src/sys/system_stm32h7xx.c
 	src/sys/system.cpp
@@ -53,6 +54,9 @@ add_executable(
   src/per/gpio.cpp
   src/per/tim.cpp
   src/per/rng.cpp
+  src/per/sai.cpp
+  src/sys/daisy_seed.cpp
+  src/per/sdram.cpp
 )
 
 include_directories(
