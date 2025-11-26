@@ -47,6 +47,9 @@ add_executable(
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sai.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_fmc.c
 	src/sys/dma.c
 	src/sys/system_stm32h7xx.c
 	src/sys/system.cpp
@@ -57,6 +60,7 @@ add_executable(
   src/per/sai.cpp
   src/sys/daisy_seed.cpp
   src/per/sdram.cpp
+  src/app/audio.cpp
 )
 
 include_directories(
@@ -65,7 +69,9 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS-Device/ST/STM32H7xx/Include
 	${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32H7xx_HAL_Driver/Inc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/sys
-	${CMAKE_CURRENT_SOURCE_DIR}/src/per)
+	${CMAKE_CURRENT_SOURCE_DIR}/src/per
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/app
+)
 
 target_link_options(
   ${EXECUTABLE}

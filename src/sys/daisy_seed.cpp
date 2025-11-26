@@ -1,6 +1,5 @@
 #include "daisy_seed.h"
 
-using namespace daisy;
 
 constexpr GPIOPort SEED_LED_PORT = PORTC;
 constexpr uint8_t  SEED_LED_PIN  = 7;
@@ -132,7 +131,7 @@ void DaisySeed::Init(bool boost)
 
     ConfigureAudio();
 
-    //callback_rate_ = AudioSampleRate() / AudioBlockSize();
+    callback_rate_ = AudioSampleRate() / AudioBlockSize();
 
 }
 
@@ -164,57 +163,57 @@ void DaisySeed::DelayMs(size_t del)
     system.Delay(del);
 }
 
-// void DaisySeed::StartAudio(AudioHandle::InterleavingAudioCallback cb)
-// {
-//     audio_handle.Start(cb);
-// }
+void DaisySeed::StartAudio(AudioHandle::InterleavingAudioCallback cb)
+{
+    audio_handle.Start(cb);
+}
 
-// void DaisySeed::StartAudio(AudioHandle::AudioCallback cb)
-// {
-//     audio_handle.Start(cb);
-// }
+void DaisySeed::StartAudio(AudioHandle::AudioCallback cb)
+{
+    audio_handle.Start(cb);
+}
 
-// void DaisySeed::ChangeAudioCallback(AudioHandle::InterleavingAudioCallback cb)
-// {
-//     audio_handle.ChangeCallback(cb);
-// }
+void DaisySeed::ChangeAudioCallback(AudioHandle::InterleavingAudioCallback cb)
+{
+    audio_handle.ChangeCallback(cb);
+}
 
-// void DaisySeed::ChangeAudioCallback(AudioHandle::AudioCallback cb)
-// {
-//     audio_handle.ChangeCallback(cb);
-// }
+void DaisySeed::ChangeAudioCallback(AudioHandle::AudioCallback cb)
+{
+    audio_handle.ChangeCallback(cb);
+}
 
-// void DaisySeed::StopAudio()
-// {
-//     audio_handle.Stop();
-// }
+void DaisySeed::StopAudio()
+{
+    audio_handle.Stop();
+}
 
-// void DaisySeed::SetAudioSampleRate(SaiHandle::Config::SampleRate samplerate)
-// {
-//     audio_handle.SetSampleRate(samplerate);
-//     callback_rate_ = AudioSampleRate() / AudioBlockSize();
-// }
+void DaisySeed::SetAudioSampleRate(SaiHandle::Config::SampleRate samplerate)
+{
+    audio_handle.SetSampleRate(samplerate);
+    callback_rate_ = AudioSampleRate() / AudioBlockSize();
+}
 
-// float DaisySeed::AudioSampleRate()
-// {
-//     return audio_handle.GetSampleRate();
-// }
+float DaisySeed::AudioSampleRate()
+{
+    return audio_handle.GetSampleRate();
+}
 
-// void DaisySeed::SetAudioBlockSize(size_t blocksize)
-// {
-//     audio_handle.SetBlockSize(blocksize);
-//     callback_rate_ = AudioSampleRate() / AudioBlockSize();
-// }
+void DaisySeed::SetAudioBlockSize(size_t blocksize)
+{
+    audio_handle.SetBlockSize(blocksize);
+    callback_rate_ = AudioSampleRate() / AudioBlockSize();
+}
 
-// size_t DaisySeed::AudioBlockSize()
-// {
-//     return audio_handle.GetConfig().blocksize;
-// }
+size_t DaisySeed::AudioBlockSize()
+{
+    return audio_handle.GetConfig().blocksize;
+}
 
-// float DaisySeed::AudioCallbackRate() const
-// {
-//     return callback_rate_;
-// }
+float DaisySeed::AudioCallbackRate() const
+{
+    return callback_rate_;
+}
 
 void DaisySeed::SetLed(bool state)
 {
@@ -258,68 +257,22 @@ void DaisySeed::ConfigureAudio()
     sai_config.pin_config.fs   = Pin(PORTE, 4);
     sai_config.pin_config.mclk = Pin(PORTE, 2);
     sai_config.pin_config.sck  = Pin(PORTE, 5);
-
-    // Device-based Init
-    switch(CheckBoardVersion())
-    {
-        case BoardVersion::DAISY_SEED_1_1:
-        {
-            // Data Line Directions
-            sai_config.a_dir         = SaiHandle::Config::Direction::RECEIVE;
-            sai_config.pin_config.sa = Pin(PORTE, 6);
-            sai_config.b_dir         = SaiHandle::Config::Direction::TRANSMIT;
-            sai_config.pin_config.sb = Pin(PORTE, 3);
-            //I2CHandle::Config i2c_config;
-            //i2c_config.mode           = I2CHandle::Config::Mode::I2C_MASTER;
-            //i2c_config.periph         = I2CHandle::Config::Peripheral::I2C_2;
-            //i2c_config.speed          = I2CHandle::Config::Speed::I2C_400KHZ;
-            //i2c_config.pin_config.scl = Pin(PORTH, 4);
-            //i2c_config.pin_config.sda = Pin(PORTB, 11);
-            //I2CHandle i2c_handle;
-            //i2c_handle.Init(i2c_config);
-            //Wm8731::Config codec_cfg;
-            //codec_cfg.Defaults();
-            //Wm8731 codec;
-            //codec.Init(codec_cfg, i2c_handle);
-        }
-        break;
-        case BoardVersion::DAISY_SEED_2_DFM:
-        {
-            // Data Line Directions
-            sai_config.a_dir         = SaiHandle::Config::Direction::TRANSMIT;
-            sai_config.pin_config.sa = Pin(PORTE, 6);
-            sai_config.b_dir         = SaiHandle::Config::Direction::RECEIVE;
-            sai_config.pin_config.sb = Pin(PORTE, 3);
-            /** PCM3060 disable deemphasis pin */
-            GPIO deemp;
-            deemp.Init(Pin(PORTB, 11), GPIO::Mode::OUTPUT);
-            deemp.Write(0);
-        }
-        break;
-        case BoardVersion::DAISY_SEED:
-        default:
-        {
-            // Data Line Directions
-            sai_config.a_dir         = SaiHandle::Config::Direction::TRANSMIT;
-            sai_config.pin_config.sa = Pin(PORTE, 6);
-            sai_config.b_dir         = SaiHandle::Config::Direction::RECEIVE;
-            sai_config.pin_config.sb = Pin(PORTE, 3);
-
-            constexpr Pin codec_reset_pin = Pin(PORTB, 11);
-            //codec.Init(codec_reset_pin);
-        }
-        break;
-    }
+           
+    // Data Line Directions
+    sai_config.a_dir         = SaiHandle::Config::Direction::TRANSMIT;
+    sai_config.pin_config.sa = Pin(PORTE, 6);
+    sai_config.b_dir         = SaiHandle::Config::Direction::RECEIVE;
+    sai_config.pin_config.sb = Pin(PORTE, 3);
 
     // Then Initialize
     sai_1_handle_.Init(sai_config);
 
     // Audio
-    // AudioHandle::Config audio_config;
-    // audio_config.blocksize  = 48;
-    // audio_config.samplerate = SaiHandle::Config::SampleRate::SAI_48KHZ;
-    // audio_config.postgain   = 1.f;
-    // audio_handle.Init(audio_config, sai_1_handle_);
+    AudioHandle::Config audio_config;
+    audio_config.blocksize  = 48;
+    audio_config.samplerate = SaiHandle::Config::SampleRate::SAI_48KHZ;
+    audio_config.postgain   = 1.f;
+    audio_handle.Init(audio_config, sai_1_handle_);
 }
 void DaisySeed::ConfigureDac()
 {
@@ -336,24 +289,5 @@ void DaisySeed::ConfigureDac()
 
 DaisySeed::BoardVersion DaisySeed::CheckBoardVersion()
 {
-    /** Version Checks:
-     *  * Fall through is Daisy Seed v1 (aka Daisy Seed rev4)
-     *  * PD3 tied to gnd is Daisy Seed v1.1 (aka Daisy Seed rev5)
-     *  * PD4 tied to gnd reserved for future hardware
-     */
 
-    /** Initialize GPIO */
-    GPIO s2dfm_gpio, seed_1_1_gpio;
-    Pin  seed_1_1_pin(PORTD, 3);
-    Pin  s2dfm_pin(PORTD, 4);
-    seed_1_1_gpio.Init(seed_1_1_pin, GPIO::Mode::INPUT, GPIO::Pull::PULLUP);
-    s2dfm_gpio.Init(s2dfm_pin, GPIO::Mode::INPUT, GPIO::Pull::PULLUP);
-
-    /** Perform Check */
-    if(!seed_1_1_gpio.Read())
-        return BoardVersion::DAISY_SEED_1_1;
-    else if(!s2dfm_gpio.Read())
-        return BoardVersion::DAISY_SEED_2_DFM;
-    else
-        return BoardVersion::DAISY_SEED;
 }

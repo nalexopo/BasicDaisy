@@ -1,27 +1,27 @@
 #include "main.h"
-#include "system.h"
-#include "gpio.h"
+
+DaisySeed Board;
+
+void AudioCallback(AudioHandle::InputBuffer  in,
+                   AudioHandle::OutputBuffer out,
+                   size_t                    size)
+{
+    for(size_t i = 0; i < size; i++)
+    {
+        /** Set each of our outputs to the value of this sine wave */
+        OUT_L[i] = IN_L[i];
+        OUT_R[i] = IN_R[i];
+    }
+}
 
 int main(void)
 {
-
-    GPIO led;
-    Pin ledpin(PORTC,7);
-    led.Init(ledpin, GPIO::Mode::OUTPUT, GPIO::Pull::NOPULL, GPIO::Speed::MEDIUM);
-    System MySystem;
-    MySystem.Init();
+    int i=0;
+    Board.Init();
+    Board.StartAudio(AudioCallback);
     while(1)
     {
-        led.Toggle();
-        MySystem.Delay(3000);
-        led.Toggle();
-        MySystem.Delay(3000);
-        for(;;)
-        {
-            MySystem.Delay(300);
-            led.Toggle();
-            
-        }
+        i++;
         
     }
     return 1;

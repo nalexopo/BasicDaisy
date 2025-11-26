@@ -6,12 +6,10 @@
 #include "sai.h"
 #include "system.h"
 #include "sdram.h"
+#include "audio.h"
 
-//Uncomment this out if you're still using the rev2 hardware
-//#define SEED_REV2
 
-namespace daisy
-{
+
 /**
    @brief This is the higher-level interface for the Daisy board. \n 
     All basic peripheral configuration/initialization is setup here. \n
@@ -61,44 +59,44 @@ class DaisySeed
     the specified callback will get called whenever
     new data is ready to be prepared.
     */
-    //void StartAudio(AudioHandle::InterleavingAudioCallback cb);
+    void StartAudio(AudioHandle::InterleavingAudioCallback cb);
 
     /** Begins the audio for the seeds builtin audio.
     the specified callback will get called whenever
     new data is ready to be prepared.
     This will use the newer non-interleaved callback.
     */
-    //void StartAudio(AudioHandle::AudioCallback cb);
+    void StartAudio(AudioHandle::AudioCallback cb);
 
     /** Changes to a new interleaved callback
      */
-    //void ChangeAudioCallback(AudioHandle::InterleavingAudioCallback cb);
+    void ChangeAudioCallback(AudioHandle::InterleavingAudioCallback cb);
 
     /** Changes to a new multichannel callback
      */
-    //void ChangeAudioCallback(AudioHandle::AudioCallback cb);
+    void ChangeAudioCallback(AudioHandle::AudioCallback cb);
 
     /** Stops the audio if it is running. */
-    //void StopAudio();
+    void StopAudio();
 
     /** Updates the Audio Sample Rate, and reinitializes.
      ** Audio must be stopped for this to work.
      */
-    //void SetAudioSampleRate(SaiHandle::Config::SampleRate samplerate);
+    void SetAudioSampleRate(SaiHandle::Config::SampleRate samplerate);
 
     /** Returns the audio sample rate in Hz as a floating point number.
      */
-    //float AudioSampleRate();
+    float AudioSampleRate();
 
     /** Sets the number of samples processed per channel by the audio callback.
      */
-    //void SetAudioBlockSize(size_t blocksize);
+    void SetAudioBlockSize(size_t blocksize);
 
     /** Returns the number of samples per channel in a block of audio. */
-    //size_t AudioBlockSize();
+    size_t AudioBlockSize();
 
     /** Returns the rate in Hz that the Audio callback is called */
-    //float AudioCallbackRate() const;
+    float AudioCallbackRate() const;
 
     /** Returns the SAI Handle for the Daisy Seed 
      *  This can be useful when adding a secondary codec,
@@ -144,13 +142,12 @@ class DaisySeed
     // QSPIHandle         qspi;
     // QSPIHandle::Config qspi_config;
     SdramHandle        sdram_handle; /**< & */
-    //AudioHandle        audio_handle; /**< & */
+    AudioHandle        audio_handle; /**< & */
     //AdcHandle          adc;          /**< & */
     //DacHandle          dac;
     //UsbHandle          usb_handle; /**< & */
     GPIO               led, testpoint;
     System             system;
-    //Ak4556             codec;
 
     /** Internal indices for DaisySeed-equivalent devices 
      *  This shouldn't have any effect on user-facing code,
@@ -253,6 +250,5 @@ namespace seed
     constexpr Pin A13 = D32;
 } // namespace seed
 
-} // namespace daisy
 
 #endif
