@@ -71,6 +71,7 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/src/sys
 	${CMAKE_CURRENT_SOURCE_DIR}/src/per
   ${CMAKE_CURRENT_SOURCE_DIR}/src/app
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/delay
 )
 
 target_link_options(

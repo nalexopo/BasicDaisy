@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.14)
 project(test)
 cmake_path(SET PROJ_DIR "../")
 cmake_path(SET MODULE_DIR "../src/")
-message(MODULE_DIR="${MODULE_DIR}")
-message(PROJ_DIR="${PROJ_DIR}")
 # GoogleTest requires at least C++17
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_C_STANDARD 11)
@@ -28,10 +26,13 @@ include_directories(
 	${PROJ_DIR}Drivers/STM32H7xx_HAL_Driver/Inc
 	${PROJ_DIR}src/sys
 	${PROJ_DIR}src/per
+  ${PROJ_DIR}src/effects/delay
 )
 add_executable(
   helloworld
   HelloWorld/helloworld.cpp
+  effects/delay/DigitalDelay.cpp
+  
 )
 target_link_libraries(
   helloworld

@@ -1,6 +1,11 @@
 #include "main.h"
+#include "DigitalDelay.h"
 
+
+#define DELAY_SAMPLE_DEPTH 480000U
 DaisySeed Board;
+
+DigitalDelay<float, DELAY_SAMPLE_DEPTH> DSY_SDRAM_BSS Delay;
 
 void AudioCallback(AudioHandle::InputBuffer  in,
                    AudioHandle::OutputBuffer out,
@@ -9,7 +14,8 @@ void AudioCallback(AudioHandle::InputBuffer  in,
     for(size_t i = 0; i < size; i++)
     {
         /** Set each of our outputs to the value of this sine wave */
-        OUT_L[i] = IN_L[i];
+        OUT_L[i] = Delay.Process(IN_L[i]);
+        //OUT_L[i] = IN_L[i];
         OUT_R[i] = IN_R[i];
     }
 }
@@ -18,6 +24,7 @@ int main(void)
 {
     int i=0;
     Board.Init();
+    Delay.Init();
     Board.StartAudio(AudioCallback);
     while(1)
     {
