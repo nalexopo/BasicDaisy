@@ -24,7 +24,7 @@ int main(void)
 {
     int i=0;
     Board.Init();
-    Delay.Init();
+    Delay.Reset(1.0f, 0.8f, 0.7f, 32000);
     Board.StartAudio(AudioCallback);
     while(1)
     {
