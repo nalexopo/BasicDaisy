@@ -14,23 +14,26 @@ class DigitalDelay
 
     void Init() {Reset();}
 
-    void Reset()
+    void Reset(float gain = 1.0f, float feedback = 0.5f, float mix = 0.5f, uint32_t delaySamples = 1)
     {
         for(uint32_t i = 0; i<sample_depth; i++)
         {
             audioBuffer[i] = T(0);
         }
-        writeIndex = 0;
-        readIndex =  0;
-        feedback = 0.95;
-        mix = 0.8;
-        delaySamples = 30000;
+        writeIndex_ = 0;
+        readIndex_ =  0;
+        
+        
+        gain_ = gain;
+        feedback_ = feedback;
+        mix_ = mix;
+        delaySamples_ = delaySamples;
     }
 
     void DelayLineWrite(T sampleIn)
     {
-        uint32_t delayedWriteIndex = writeIndex;
-        delayedWriteIndex += delaySamples;
+        uint32_t delayedWriteIndex = writeIndex_;
+        delayedWriteIndex += delaySamples_;
         if(delayedWriteIndex < sample_depth)
         {
             audioBuffer[delayedWriteIndex] = sampleIn;
@@ -40,19 +43,19 @@ class DigitalDelay
             delayedWriteIndex -= sample_depth;
             audioBuffer[delayedWriteIndex] = sampleIn;
         }
-        writeIndex++;
-        if(writeIndex == sample_depth)
+        writeIndex_++;
+        if(writeIndex_ == sample_depth)
         {
-            writeIndex = 0;
+            writeIndex_ = 0;
         }
     }
     T DelayLineRead(void)
     {
-        T sample = audioBuffer[readIndex];
-        readIndex++;
-        if(readIndex == sample_depth)
+        T sample = audioBuffer[readIndex_];
+        readIndex_++;
+        if(readIndex_ == sample_depth)
         {
-            readIndex = 0;
+            readIndex_ = 0;
         }
 
         return sample;
@@ -60,18 +63,20 @@ class DigitalDelay
     T Process(T sampleIn)
     {
         T dry = sampleIn;
-        T wet = feedback * DelayLineRead() + sampleIn;
+        T wet = feedback_ * DelayLineRead() + sampleIn;
         DelayLineWrite(wet);
 
-        return 1.5*((1-mix) * dry + mix * wet);
+        return gain_*((1-mix_) * dry + mix_ * wet);
     }
-    T  audioBuffer[sample_depth];
+    
     private:
-    float mix;
-    float feedback;
-    uint32_t delaySamples;
-    uint32_t writeIndex;
-    uint32_t readIndex;
+    T  audioBuffer[sample_depth];
+    float mix_;
+    float gain_;
+    float feedback_;
+    uint32_t delaySamples_;
+    uint32_t writeIndex_;
+    uint32_t readIndex_;
     
 };
 

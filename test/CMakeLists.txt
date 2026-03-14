@@ -31,7 +31,7 @@ include_directories(
 add_executable(
   helloworld
   HelloWorld/helloworld.cpp
-  effects/delay/DigitalDelay.cpp
+  effects/delay/DigitalDelay-test.cpp
   
 )
 target_link_libraries(
