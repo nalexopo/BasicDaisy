@@ -9,13 +9,9 @@ Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 ### Directions:
 
-#### Using cmake from build directory:
-cmake .. -DCMAKE_BUILD_TYPE=Debug <br />
-make clean <br />
-make <br />
-To flash: make program <br />
-
-#### Using makefile from project directory:
+#### Using cmake:
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug/Release <br />
 make clean <br />
 make <br />
 To flash: make program <br />
@@ -28,4 +24,6 @@ cd build && ctest<br />
 
 All work from parent project folder. Debugging is clunky and bugging through make, but works perfectly with VsCode Cortex M debug Addon by marus25. For now, I guess gdb scripts are out of the question.
 
-Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies. I will try to keep main branch in a basic project form and do my own dev on branches. 
+Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies. 
+
+Blink led @ 12c2cb8e7459371a14212ea0384d66e50286da91. I will add the effects I make in main branch.
