@@ -37,6 +37,8 @@ add_compile_options(-include stm32h7xx.h)
 add_executable(
   ${EXECUTABLE}
   core/startup_stm32h750xx.c
+  
+  #Drivers
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_gpio.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c
@@ -50,16 +52,25 @@ add_executable(
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sai.c
   Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_fmc.c
-	src/sys/dma.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c
+  Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c
+	
+  #system
+  src/sys/dma.c
 	src/sys/system_stm32h7xx.c
 	src/sys/system.cpp
+  src/sys/daisy_seed.cpp
   src/app/main.cpp
+  
+  #peripherals
   src/per/gpio.cpp
   src/per/tim.cpp
   src/per/rng.cpp
   src/per/sai.cpp
-  src/sys/daisy_seed.cpp
   src/per/sdram.cpp
+  src/per/adc.cpp
+  
+  #application
   src/app/audio.cpp
 )
 

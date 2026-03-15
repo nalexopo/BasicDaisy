@@ -7,6 +7,7 @@
 #include "system.h"
 #include "sdram.h"
 #include "audio.h"
+#include "adc.h"
 
 
 
@@ -143,7 +144,7 @@ class DaisySeed
     // QSPIHandle::Config qspi_config;
     SdramHandle        sdram_handle; /**< & */
     AudioHandle        audio_handle; /**< & */
-    //AdcHandle          adc;          /**< & */
+    AdcHandle          adc;          /**< & */
     //DacHandle          dac;
     //UsbHandle          usb_handle; /**< & */
     GPIO               led, testpoint;

@@ -63,12 +63,35 @@ class DigitalDelay
     T Process(T sampleIn)
     {
         T dry = sampleIn;
-        T wet = feedback_ * DelayLineRead() + sampleIn;
-        DelayLineWrite(wet);
+        T wet = feedback_ * DelayLineRead();
+        
+        DelayLineWrite(dry+wet);
 
-        return gain_*((1-mix_) * dry + mix_ * wet);
+        return gain_*((1.0f-mix_) * dry + mix_ * wet );
     }
-    
+    void AdjustMix(float pot)
+    {
+        mix_ = pot;
+    }
+
+    void AdjustFeedback(float pot)
+    {
+        feedback_ = pot;
+    }
+
+    void AdjustDelay(float pot)
+    {
+        uint32_t delaySamples = static_cast<uint32_t>(100000.0f * pot);
+
+        //Dead Zone to compensate from potensiometer noise - Distorts audio
+        if(delaySamples_-delaySamples > 10000)
+        {
+            delaySamples_ = delaySamples;
+        }
+
+    }
+
+
     private:
     T  audioBuffer[sample_depth];
     float mix_;
