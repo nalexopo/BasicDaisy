@@ -10,44 +10,43 @@ constexpr uint8_t  SEED_TEST_POINT_PIN  = 14;
 #ifndef SEED_REV2
 const Pin seedgpio[33] = {
     // GPIO 1-8
-    //{PORTA, 8}, // removed on Rev4
-    seed::D0,
-    seed::D1,
-    seed::D2,
-    seed::D3,
-    seed::D4,
-    seed::D5,
-    seed::D6,
+    seed::D0,   //PORTA,    8
+    seed::D1,   //PORTB,    12   
+    seed::D2,   //PORTC,    11 
+    seed::D3,   //PORTC,    10  
+    seed::D4,   //PORTC,    9  
+    seed::D5,   //PORTC,    8 
+    seed::D6,   //PORTD,    7  
     // GPIO 9-16
-    seed::D7,
-    seed::D8,
-    seed::D9,
-    seed::D10,
-    seed::D11,
-    seed::D12,
-    seed::D13,
-    seed::D14,
+    seed::D7,   //PORTC     12 
+    seed::D8,   //PORTG     10 
+    seed::D9,   //PORTG,    11 
+    seed::D10,  //PORTB     4 
+    seed::D11,  //PORTB,    5 
+    seed::D12,  //PORTB,    8 
+    seed::D13,  //PORTB,    9 
+    seed::D14,  //PORTB,    6  
     // GPIO 17-24
-    seed::D15,
-    seed::D16,
-    seed::D17,
-    seed::D18,
-    seed::D19,
-    seed::D20,
-    seed::D21,
-    seed::D22,
+    seed::D15,  //PORTB     7
+    seed::D16,  //PORTC     0
+    seed::D17,  //PORTA     1  
+    seed::D18,  //PORTA     3  
+    seed::D19,  //PORTB     1  
+    seed::D20,  //PORTA     7
+    seed::D21,  //PORTA     6 
+    seed::D22,  //PORTC     1        
     // GPIO 25-31
-    seed::D23,
-    seed::D24,
-    seed::D25,
-    seed::D26,
-    seed::D27,
-    seed::D28,
-    seed::D29,
-    seed::D30,
+    seed::D23,  //PORTC     5 
+    seed::D24,  //PORTA     5          
+    seed::D25,  //PORTA     4  
+    seed::D26,  //PORTA     0   
+    seed::D27,  //PORTD     11 
+    seed::D28,  //PORTG     9  
+    seed::D29,  //PORTA     2 
+    seed::D30,  //PORTB     14 
 
     // Seed2DFM exclusive pins
-    seed::D31,
+    seed::D31,  //PORTB       157
     seed::D32,
 };
 #else
