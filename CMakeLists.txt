@@ -72,6 +72,9 @@ add_executable(
   
   #application
   src/app/audio.cpp
+
+  #effects
+  src/effects/fxlibs/lfo.cpp
 )
 
 include_directories(
@@ -83,6 +86,7 @@ include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/src/per
   ${CMAKE_CURRENT_SOURCE_DIR}/src/app
   ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/delay
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/fxlibs
 )
 
 target_link_options(
