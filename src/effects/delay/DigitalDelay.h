@@ -82,9 +82,9 @@ class DigitalDelay
     void AdjustDelay(float pot)
     {
         uint32_t delaySamples = static_cast<uint32_t>(100000.0f * pot);
-
+        uint32_t absdiff = (delaySamples_  > delaySamples) ? delaySamples_  - delaySamples : delaySamples - delaySamples_ ;
         //Dead Zone to compensate from potensiometer noise - Distorts audio
-        if(delaySamples_-delaySamples > 10000)
+        if(absdiff > 100)
         {
             delaySamples_ = delaySamples;
         }
