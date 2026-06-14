@@ -37,6 +37,11 @@ float lfo::Process(void)
         eoc_ = false;
     }
     
-    return out * gain_;
+    return out;
 }
 
+void lfo::SetFreq(float freq)
+{
+    freq_           =   freq;
+    phase_inc_      =   CalcPhaseInc(freq_);
+}
