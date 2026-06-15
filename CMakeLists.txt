@@ -75,6 +75,7 @@ add_executable(
 
   #effects
   src/effects/fxlibs/lfo.cpp
+  src/effects/fxlibs/knob.cpp
 )
 
 include_directories(
