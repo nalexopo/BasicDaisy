@@ -2,9 +2,16 @@
 #include "DigitalDelay.h"
 #include "adc.h"
 #include "stdatomic.h"
+#include "knob.h"
 
 #define DELAY_SAMPLE_DEPTH 480000U
 DaisySeed Board;
+knob knob[3];
+
+float debugknob1 = 0.f; 
+float debugknob2 = 0.f;
+float debugknob3 = 0.f;
+
 
 DigitalDelay<float, DELAY_SAMPLE_DEPTH> DSY_SDRAM_BSS DDelay;
 int i=0;
@@ -17,9 +24,15 @@ void AudioCallback(AudioHandle::InputBuffer  in,
     if(UpdateSettings)
     {
         UpdateSettings = false;
-        DDelay.AdjustMix(Board.adc.GetFloat(0));
-        DDelay.AdjustFeedback(Board.adc.GetFloat(1));
-        DDelay.AdjustDelay(Board.adc.GetFloat(2));
+
+        debugknob1 = knob[0].Process(Board.adc.GetFloat(0));
+        debugknob2 = knob[1].Process(Board.adc.GetFloat(1));
+        debugknob3 = knob[2].Process(Board.adc.GetFloat(2));
+
+
+        DDelay.AdjustMix(debugknob1);
+        DDelay.AdjustFeedback(debugknob2);
+        DDelay.AdjustDelay(debugknob3);
     }    
     for(size_t i = 0; i < size; i++)
     {
@@ -47,7 +60,14 @@ int main(void)
     Board.adc.Start();
     
     Board.StartAudio(AudioCallback);
-
+    
+    for(i=0;i<3;i++)
+    {
+        knob[i].UnityCalibrate(0.015f, 1.f, 0.017f, 0.97f);
+    }
+    knob[0].Init();
+    knob[1].Init(knob::LOGARITHMIC);
+    knob[2].Init();
     while(1)
     {
         i++;
