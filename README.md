@@ -7,7 +7,7 @@ The project contains the basic stuff (maybe a few more) from original Daisy code
  Project uses arm-none-eabi 14.3.1 version so it can be used with C++23.
 
 
-### Directions:
+## Software guidelines:
 
 #### Using cmake:
 cd build <br />
@@ -16,7 +16,7 @@ make clean <br />
 make <br />
 To flash: make program <br />
 
-#### Testing with google test (only hello world for now)
+#### Testing with google test
 cd test <br />
 cmake -S . -B build <br />
 cmake --build build <br />
@@ -27,3 +27,14 @@ All work from parent project folder. Debugging works perfectly with VsCode Corte
 Maybe I will do a non-HAL version. Pending to see how tests work with hardware dependencies. 
 
 Blink led @ 12c2cb8e7459371a14212ea0384d66e50286da91. I will add the effects I make in main branch.
+
+
+### Hardware
+
+Not so recently I moved from a breadboard set-up to a pedal format. Below is the breadboard setup I used in initial bringup for historic reference.
+
+![Breadboard Format](docs/media/Breadboard.jpeg)
+
+Now I use this pedal format which is a ready solution (needs soldering and assembly) that can be found here: [Bausatz Pedal](https://www.musikding.de/Terrarium-Platform-Bausatz_1). Pedal has a little bit noise but is a lot quieter than my breadboard. Another dissapointment is that while the design could be easily stereo they have not implemented it. There are other pedal formats out there that use daisy seed and I may try in the future, or come up with my own if I have the time. Picture of my current setup below.
+
+![Pedal Format](docs/media/Pedal.jpeg)
