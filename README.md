@@ -29,7 +29,7 @@ Maybe I will do a non-HAL version. Pending to see how tests work with hardware d
 Blink led @ 12c2cb8e7459371a14212ea0384d66e50286da91. I will add the effects I make in main branch.
 
 
-### Hardware
+## Hardware:
 
 Not so recently I moved from a breadboard set-up to a pedal format. Below is the breadboard setup I used in initial bringup for historic reference.
 
