@@ -2,11 +2,16 @@
 #include "DigitalDelay.h"
 #include "adc.h"
 #include "stdatomic.h"
+#include "tremolo.h"
+#include "lfo.h"
+#include "knob.h"
 
 #define DELAY_SAMPLE_DEPTH 480000U
 DaisySeed Board;
 
-DigitalDelay<float, DELAY_SAMPLE_DEPTH> DSY_SDRAM_BSS DDelay;
+tremolo trem(48000.0f);
+knob knob[6];
+
 int i=0;
 std::atomic<bool> UpdateSettings = false;
 
@@ -17,14 +22,13 @@ void AudioCallback(AudioHandle::InputBuffer  in,
     if(UpdateSettings)
     {
         UpdateSettings = false;
-        DDelay.AdjustMix(Board.adc.GetFloat(0));
-        DDelay.AdjustFeedback(Board.adc.GetFloat(1));
-        DDelay.AdjustDelay(Board.adc.GetFloat(2));
+        trem.AdjustRate(knob[0].Process(Board.adc.GetFloat(0)));
+        trem.AdjustDepth(knob[1].Process(Board.adc.GetFloat(1)));
     }    
     for(size_t i = 0; i < size; i++)
     {
         /** Set each of our outputs to the value of this sine wave */
-        OUT_L[i] = DDelay.Process(IN_L[i]);
+        OUT_L[i] = trem.Process(IN_L[i]);
         //OUT_L[i] = IN_L[i];
         //OUT_R[i] = IN_R[i];
     }
@@ -35,7 +39,7 @@ int main(void)
    
     Board.Init();
     
-    DDelay.Reset(1.5f, 0.8f, 0.7f, 32000);
+    trem.AdjustWaveForm(lfo::waveform::WAVE_TRI);
     //ADC Init
     AdcChannelConfig adcConfig[4];
     adcConfig[0].InitSingle(Board.GetPin(16));
@@ -47,7 +51,13 @@ int main(void)
     Board.adc.Start();
     
     Board.StartAudio(AudioCallback);
-
+    for(i=0;i<3;i++)
+    {
+        knob[i].UnityCalibrate(0.015f, 1.f, 0.017f, 0.97f);
+    }
+    knob[0].Init(knob::EXPONENTIAL);
+    knob[1].Init();
+    knob[2].Init();
     while(1)
     {
         i++;

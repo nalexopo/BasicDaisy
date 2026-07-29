@@ -76,6 +76,7 @@ add_executable(
   #effects
   src/effects/fxlibs/lfo.cpp
   src/effects/fxlibs/knob.cpp
+  src/effects/tremolo/tremolo.cpp
 )
 
 include_directories(
@@ -88,6 +89,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/src/app
   ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/delay
   ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/fxlibs
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/effects/tremolo
 )
 
 target_link_options(

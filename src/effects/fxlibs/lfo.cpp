@@ -40,3 +40,8 @@ float lfo::Process(void)
     return out * gain_;
 }
 
+void lfo::SetFreq(float freq)
+{
+    freq_           =   freq;
+    phase_inc_      =   CalcPhaseInc(freq_);
+}

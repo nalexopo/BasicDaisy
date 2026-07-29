@@ -30,7 +30,7 @@ class lfo
     void Init(float sample_rate)
     {
         sampleRate_     = sample_rate;
-        freq_           = 50.0f;
+        freq_           = 10.0f;
         phase_inc_      = CalcPhaseInc(freq_);
         waveform_       = WAVE_SIN;
         sqpulse_duty_   = 0.5f;
@@ -38,6 +38,24 @@ class lfo
         phase_          = 0.0f;
         eoc_            = false;
     }
+
+    void SetFreq(float freq);
+    
+    void SetGain(float gain)
+    {
+        gain_ = gain;
+    }
+    
+    float GetGain(void)
+    {
+        return gain_;
+    }
+
+    void SetWaveform(enum waveform waveform)
+    {
+        waveform_ = waveform;
+    }
+
 
     float Process(void);
     private:
