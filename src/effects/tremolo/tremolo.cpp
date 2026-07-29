@@ -16,7 +16,7 @@ void tremolo::AdjustDepth(float pot)
 {
     float depth = daisysp::fclamp(pot, 0.f, 1.f);
     
-    
+    depth_ = depth;
     tremlfo_.SetGain(depth) ;         
 }
 
@@ -27,5 +27,5 @@ void tremolo::AdjustWaveForm(enum lfo::waveform waveform)
 
 float tremolo::Process(float sample)
 {
-    return   0.6f * sample + sample * tremlfo_.Process();
+    return    sample + sample * tremlfo_.Process();
 }
