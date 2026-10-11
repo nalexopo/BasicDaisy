@@ -6,5 +6,6 @@
         "compare": "cpp",
         "daisy_seed.h": "c",
         "format": "cpp"
-    }
+    },
+    "cortex-debug.armToolchainPath": "/home/nalexopo/ArmSt/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi/bin"
 }
